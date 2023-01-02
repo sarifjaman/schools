@@ -10,12 +10,12 @@
       <div class="content-header">
           <div class="d-flex align-items-center">
               <div class="mr-auto">
-                  <h3 class="page-title">Student Monthly Fee Show</h3>
+                  <h3 class="page-title">Student Exam Fee Show</h3>
                   <div class="d-inline-block align-items-center">
                       <nav>
                           <ol class="breadcrumb">
                               <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="mdi mdi-home-outline"></i></a></li>
-                              <li class="breadcrumb-item" aria-current="page">Student Monthly Fee Table</li>
+                              <li class="breadcrumb-item" aria-current="page">Student Exam Fee Table</li>
                               <li class="breadcrumb-item active" aria-current="page">Data Tables</li>
                           </ol>
                       </nav>
@@ -31,7 +31,7 @@
          <div class="col-12">
           <div class="box bb-3 border-warning">
             <div class="box-header">
-              <h4 class="box-title">Student <strong>Registration Fee</strong></h4>
+              <h4 class="box-title">Student <strong>Exam Fee</strong></h4>
             </div>
 
             <div class="box-body">
@@ -45,8 +45,8 @@
                         <select name="year_id" id="year_id" class="form-control">
                           <option value="">Select Your Year</option>
 
-                          @foreach ($years as $year)
-                              <option value="{{ $year->id }}">{{ $year->name }}</option>
+                          @foreach($years as $year)
+                           <option value="{{ $year->id }}">{{ $year->name }}</option>
                           @endforeach
                           
                         </select>
@@ -61,9 +61,9 @@
                       <div class="contrls">
                         <select name="class_id" id="class_id" class="form-control">
                           <option value="">Select Your Class</option>
-                          
+
                           @foreach($classes as $class)
-                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                           <option value="{{ $class->id }}">{{ $class->name }}</option>
                           @endforeach
                           
                         </select>
@@ -73,24 +73,15 @@
 
                   <div class="col-12 col-md-3">
                     <div class="form-group">
-                     <h5>Month</h5>
+                     <h5>Exam Type</h5>
 
                      <div class="controls">
-                       <select name="month" id="month" class="form-control">
-                         <option value="">Select Your Month</option>
+                       <select name="exam_type_id" id="exam_type_id" class="form-control">
+                         <option value="">Select Your Exam</option>
 
-                                                     <option value="January">January</option>  
-                                                     <option value="February">February</option> 
-                                                     <option value="March">March</option>
-                                                     <option value="April">April</option>
-                                                     <option value="May">May</option>
-                                                     <option value="June">June</option>
-                                                     <option value="July">July</option>
-                                                     <option value="Auguest">Auguest</option>
-                                                     <option value="September">September</option>
-                                                     <option value="October">October</option>
-                                                     <option value="November">November</option>
-                                                     <option value="December">December</option> 
+                         @foreach($exam_type as $exam)
+                          <option value="{{ $exam->id}}">{{ $exam->name }}</option>
+                         @endforeach
                          
                        </select>
                      </div>
@@ -149,12 +140,12 @@
     $(document).on('click','#search',function(){
         var year_id = $('#year_id').val();
         var class_id = $('#class_id').val();
-        var month = $('#month').val();
+        var exam_type_id = $('#exam_type_id').val();
 
         $.ajax({
-            url        : "{{ route('student.monthly.fee.classwise.get') }}",
+            url        : "{{ route('student.exam.fee.classwise.get') }}",
             method     : "get",
-            data       : {'year_id' : year_id,'class_id' : class_id,'month': month},
+            data       : {'year_id' : year_id,'class_id' : class_id,'exam_type_id': exam_type_id},
             beforeSend : function(){},
             success    : function(data){
                 var source   = $('#document-template').html();

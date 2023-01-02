@@ -100,6 +100,7 @@
     <li><a href="{{ route('student.roll.generate.view') }}"><i class="ti-more"></i>Student Roll Generate</a></li>
     <li><a href="{{ route('student.reg.fee.view') }}"><i class="ti-more"></i>Student Registration Fee</a></li>
     <li><a href="{{ route('student.monthly.fee.view') }}"><i class="ti-more"></i>Student Monthly Fee</a></li>
+    <li><a href="{{ route('student.exam.fee.view') }}"><i class="ti-more"></i>Student Exam Fee</a></li>
   </ul>
 </li>
 <!--Student Management End-->
