@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
 use App\Http\Controllers\Backend\Setup\DesignationController;
@@ -190,5 +191,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/exam/fee/view', [ExamfeeController::class, 'examfeeview'])->name('student.exam.fee.view');
         Route::get('/exam/fee/classwise', [ExamfeeController::class, 'examfeeclasswise'])->name('student.exam.fee.classwise.get');
         Route::get('/exam/fee/payslip', [ExamfeeController::class, 'examfeepayslip'])->name('student.exam.fee.payslip');
+    });
+
+    //Employee Management
+    Route::prefix('employees')->group(function () {
+        //Employee Registration
+        Route::get('/registration/view', [EmployeeRegController::class, 'employeeview'])->name('employee.registration.view');
+        Route::get('/registration/add', [EmployeeRegController::class, 'employeeregistrationadd'])->name('employee.registration.add');
+        Route::post('/registration/store', [EmployeeRegController::class, 'employeeregistrationstore'])->name('employee.registration.store');
+        Route::get('/registration/edit/{id}', [EmployeeRegController::class, 'employeeregistrationedit'])->name('employee.registration.edit');
+        Route::post('/registration/update/{id}', [EmployeeRegController::class, 'employeeregistrationupdate'])->name('employee.registration.update');
+        Route::get('/registration/details/{id}', [EmployeeRegController::class, 'employeeregistrationdetails'])->name('employee.registration.details');
     });
 });

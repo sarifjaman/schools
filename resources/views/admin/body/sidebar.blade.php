@@ -104,6 +104,22 @@
   </ul>
 </li>
 <!--Student Management End-->
+
+<!--Employee Management-->
+<li class="treeview {{ $prefix == '/employees' ? 'active' : '' }}">
+  <a href="#">
+    <i class="fa fa-user-secret" aria-hidden="true"></i> <span>Employee Management</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-right pull-right"></i>
+    </span>
+  </a>
+  
+  <ul class="treeview-menu">
+    <li><a href="{{ route('employee.registration.view') }}"><i class="ti-more"></i>Employee Registration View</a></li>
+
+  </ul>
+</li>
+<!--Employee Management End-->
 		
         <li class="treeview">
           <a href="#">
