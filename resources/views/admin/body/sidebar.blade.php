@@ -116,7 +116,7 @@
   
   <ul class="treeview-menu">
     <li><a href="{{ route('employee.registration.view') }}"><i class="ti-more"></i>Employee Registration View</a></li>
-
+    <li><a href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary View</a></li>
   </ul>
 </li>
 <!--Employee Management End-->

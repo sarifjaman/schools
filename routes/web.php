@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
+use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
 use App\Http\Controllers\Backend\Setup\DesignationController;
@@ -202,5 +203,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/registration/edit/{id}', [EmployeeRegController::class, 'employeeregistrationedit'])->name('employee.registration.edit');
         Route::post('/registration/update/{id}', [EmployeeRegController::class, 'employeeregistrationupdate'])->name('employee.registration.update');
         Route::get('/registration/details/{id}', [EmployeeRegController::class, 'employeeregistrationdetails'])->name('employee.registration.details');
+
+        //Employee Salary
+        Route::get('/salary/view', [EmployeeSalaryController::class, 'employeesalaryview'])->name('employee.salary.view');
+        Route::get('/salary/increment/{id}', [EmployeeSalaryController::class, 'employeesalaryincrement'])->name('employee.salary.increment');
+        Route::post('/salary/increment/update/{id}', [EmployeeSalaryController::class, 'employeesalaryincrementupdate'])->name('employee.salary.increment.update');
+        Route::get('/salary/details/{id}', [EmployeeSalaryController::class, 'employeesalarydetails'])->name('employee.salary.details');
     });
 });
