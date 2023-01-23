@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Backend\Student\StudentRollGenerateController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend;
 use App\Models\Designation;
+use App\Models\EmployeeLeave;
 use App\Models\FeeCategoryAmount;
 use Illuminate\Support\Facades\Route;
 
@@ -209,5 +211,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/salary/increment/{id}', [EmployeeSalaryController::class, 'employeesalaryincrement'])->name('employee.salary.increment');
         Route::post('/salary/increment/update/{id}', [EmployeeSalaryController::class, 'employeesalaryincrementupdate'])->name('employee.salary.increment.update');
         Route::get('/salary/details/{id}', [EmployeeSalaryController::class, 'employeesalarydetails'])->name('employee.salary.details');
+
+        //Employee Leave
+        Route::get('/leave/view', [EmployeeLeaveController::class, 'employeeleaveview'])->name('employee.leave.view');
+        Route::get('/add/leave', [EmployeeLeaveController::class, 'addemployeeleave'])->name('add.employee.leave');
+        Route::post('/leave/store', [EmployeeLeaveController::class, 'employeeleavestore'])->name('employee.leave.store');
+        Route::get('/leave/edit/{id}', [EmployeeLeaveController::class, 'employeeleaveedit'])->name('employee.leave.edit');
+        Route::post('/leave/update/{id}', [EmployeeLeaveController::class, 'employeeleaveupdate'])->name('employee.leave.update');
+        Route::get('/leave/delete/{id}', [EmployeeLeaveController::class, 'employeeleavedelete'])->name('employee.leave.delete');
     });
 });
