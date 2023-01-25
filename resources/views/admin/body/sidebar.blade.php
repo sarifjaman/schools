@@ -118,6 +118,7 @@
     <li><a href="{{ route('employee.registration.view') }}"><i class="ti-more"></i>Employee Registration View</a></li>
     <li><a href="{{ route('employee.salary.view') }}"><i class="ti-more"></i>Employee Salary View</a></li>
     <li><a href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee leave View</a></li>
+    <li><a href="{{ route('employee.attendance.view') }}"><i class="ti-more"></i>Employee Attendance View</a></li>
   </ul>
 </li>
 <!--Employee Management End-->
