@@ -105,7 +105,7 @@
 </li>
 <!--Student Management End-->
 
-<!--Employee Management-->
+<!--Employee Management Start-->
 <li class="treeview {{ $prefix == '/employees' ? 'active' : '' }}">
   <a href="#">
     <i class="fa fa-user-secret" aria-hidden="true"></i> <span>Employee Management</span>
@@ -123,6 +123,22 @@
   </ul>
 </li>
 <!--Employee Management End-->
+
+<!--Student Marks Start-->
+<li class="treeview {{ $prefix == '/marks' ? 'active' : '' }}">
+  <a href="#">
+    <i class="fa fa-pie-chart" aria-hidden="true"></i> <span>Student Marks Management</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-right pull-right"></i>
+    </span>
+  </a>
+  
+  <ul class="treeview-menu">
+    <li><a href="{{ route('marks.entry.add') }}"><i class="ti-more"></i>Marks Entry Add</a></li>
+    <li><a href="{{ route('marks.entry.edit') }}"><i class="ti-more"></i>Marks Entry Edit</a></li>
+  </ul>
+</li>
+<!--Student Marks End-->
 		
         <li class="treeview">
           <a href="#">

@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\DefaultController;
 use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
 use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalary;
 use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalaryController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
+use App\Http\Controllers\Backend\Marks\MarksController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
 use App\Http\Controllers\Backend\Setup\DesignationController;
@@ -235,4 +237,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/monthly/salary/get', [EmployeeMonthlySalaryController::class, 'employeemonthlysalaryget'])->name('employee.monthly.salary.get');
         Route::get('/monthly/salary/payslip/{employee_id}', [EmployeeMonthlySalaryController::class, 'employeemonthlysalarypayslip'])->name('employee.monthly.salary.payslip');
     });
+
+    //Mark Management
+    Route::prefix('marks')->group(function () {
+        Route::get('/entry/add', [MarksController::class, 'marksentryadd'])->name('marks.entry.add');
+        Route::post('/entry/store', [MarksController::class, 'marksentrystore'])->name('marks.entry.store');
+        Route::get('/entry/edit', [MarksController::class, 'marksentryedit'])->name('marks.entry.edit');
+        Route::get('/student/edit/getstudents', [MarksController::class, 'studenteditgetstudents'])->name('student.edit.getstudents');
+        Route::post('/entry/update', [MarksController::class, 'marksentryupdate'])->name('marks.entry.update');
+    });
+
+    Route::get('marks/getsubject', [DefaultController::class, 'marksgetsubject'])->name('marks.getsubject');
+    Route::get('student/marks/getstudents', [DefaultController::class, 'studentmarksgetstudents'])->name('student.marks.getstudents');
 });
