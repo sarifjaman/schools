@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalary;
 use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalaryController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
+use App\Http\Controllers\Backend\Marks\GradeControloler;
 use App\Http\Controllers\Backend\Marks\MarksController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
@@ -245,6 +246,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/entry/edit', [MarksController::class, 'marksentryedit'])->name('marks.entry.edit');
         Route::get('/student/edit/getstudents', [MarksController::class, 'studenteditgetstudents'])->name('student.edit.getstudents');
         Route::post('/entry/update', [MarksController::class, 'marksentryupdate'])->name('marks.entry.update');
+
+        //Marks Grade 
+        Route::get('/grade/view', [GradeControloler::class, 'marksgradeview'])->name('marks.grade.view');
+        Route::get('/grade/add', [GradeControloler::class, 'marksgradeadd'])->name('marks.grade.add');
+        Route::post('/grade/store', [GradeControloler::class, 'marksgradestore'])->name('marks.grade.store');
+        Route::get('/grade/edit/{id}', [GradeControloler::class, 'marksgradeedit'])->name('marks.grade.edit');
+        Route::post('/grade/update/{id}', [GradeControloler::class, 'marksgradeupdate'])->name('marks.grade.update');
     });
 
     Route::get('marks/getsubject', [DefaultController::class, 'marksgetsubject'])->name('marks.getsubject');

@@ -136,6 +136,7 @@
   <ul class="treeview-menu">
     <li><a href="{{ route('marks.entry.add') }}"><i class="ti-more"></i>Marks Entry Add</a></li>
     <li><a href="{{ route('marks.entry.edit') }}"><i class="ti-more"></i>Marks Entry Edit</a></li>
+    <li><a href="{{ route('marks.grade.view') }}"><i class="ti-more"></i>Marks Grade View</a></li>
   </ul>
 </li>
 <!--Student Marks End-->
