@@ -140,6 +140,21 @@
   </ul>
 </li>
 <!--Student Marks End-->
+
+<!--Account Start-->
+<li class="treeview {{ $prefix == '/accounts' ? 'active' : '' }}">
+  <a href="#">
+    <i class="fa fa-book" aria-hidden="true"></i> <span>Accounts Management</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-right pull-right"></i>
+    </span>
+  </a>
+  
+  <ul class="treeview-menu">
+    <li><a href="{{ route('student.fee.view') }}"><i class="ti-more"></i>Student Fee</a></li>
+  </ul>
+</li>
+<!--Student Marks End-->
 		
         <li class="treeview">
           <a href="#">

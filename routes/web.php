@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\Account\StudentFeeController;
 use App\Http\Controllers\Backend\DefaultController;
 use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
@@ -257,4 +258,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('marks/getsubject', [DefaultController::class, 'marksgetsubject'])->name('marks.getsubject');
     Route::get('student/marks/getstudents', [DefaultController::class, 'studentmarksgetstudents'])->name('student.marks.getstudents');
+
+    Route::prefix('accounts')->group(function () {
+        Route::get('/student/fee/view', [StudentFeeController::class, 'studentfeeview'])->name('student.fee.view');
+        Route::get('/student/fee/add', [StudentFeeController::class, 'studentfeeadd'])->name('student.fee.add');
+        Route::get('/student/fee/classwise/get', [StudentFeeController::class, 'studentfeeclasswiseget'])->name('student.fee.classwise.get');
+        Route::post('/account/fee/store', [StudentFeeController::class, 'accountfeestore'])->name('account.fee.store');
+    });
 });
