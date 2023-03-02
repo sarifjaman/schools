@@ -151,10 +151,34 @@
   </a>
   
   <ul class="treeview-menu">
-    <li><a href="{{ route('student.fee.view') }}"><i class="ti-more"></i>Student Fee</a></li>
+    <li class="{{ ($route == 'student.fee.view') ? 'active' : ''; }}"><a href="{{ route('student.fee.view') }}"><i class="ti-more"></i>Student Fee</a></li>
+    <li class="{{ ($route == 'account.salary.view') ? 'active' : ''; }}"><a href="{{ route('account.salary.view') }}"><i class="ti-more"></i>Employee Salary</a></li>
+
+    <!--Other Cost-->
+    <li class="{{ ($route == 'other.cost.view') ? 'active' : ''; }}"><a href="{{ route('other.cost.view') }}"><i class="ti-more"></i>Other Cost</a></li>
   </ul>
 </li>
-<!--Student Marks End-->
+<!--Account End-->
+
+<!--Profit Start-->
+<li class="treeview {{ $prefix == '/reports' ? 'active' : '' }}">
+  <a href="#">
+    <i class="fa fa-money" aria-hidden="true"></i> <span>Report Management</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-right pull-right"></i>
+    </span>
+  </a>
+  
+  <ul class="treeview-menu">
+    <!--Monthly-Yearly Profit-->
+    <li class="{{ ($route == 'monthly.profit.view') ? 'active' : ''; }}"><a href="{{ route('monthly.profit.view') }}"><i class="ti-more"></i>Monthly - Yearly Profit</a></li>
+
+    <!---Marksheet Generate--->
+    <li class="{{ ($route == 'marksheet.generate.view') ? 'active' : '';}}"><a href="{{ route('marksheet.generate.view') }}"><i class="ti-more"></i>Marksheet</a></li>
+   
+  </ul>
+</li>
+<!--Profit End-->
 		
         <li class="treeview">
           <a href="#">

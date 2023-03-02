@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\Account\AccountSalaryController;
+use App\Http\Controllers\Backend\Account\OtherCostController;
 use App\Http\Controllers\Backend\Account\StudentFeeController;
 use App\Http\Controllers\Backend\DefaultController;
 use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
@@ -12,6 +14,8 @@ use App\Http\Controllers\Backend\Employee\EmployeeSalaryController;
 use App\Http\Controllers\Backend\Marks\GradeControloler;
 use App\Http\Controllers\Backend\Marks\MarksController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\Report\MarksheetController;
+use App\Http\Controllers\Backend\Report\ProfitController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
 use App\Http\Controllers\Backend\Setup\DesignationController;
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
@@ -29,6 +33,7 @@ use App\Http\Controllers\Backend\Student\StudentRegController;
 use App\Http\Controllers\Backend\Student\StudentRollGenerateController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend;
+use App\Models\AccountEmployeeSalary;
 use App\Models\Designation;
 use App\Models\EmployeeLeave;
 use App\Models\FeeCategoryAmount;
@@ -264,5 +269,29 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/student/fee/add', [StudentFeeController::class, 'studentfeeadd'])->name('student.fee.add');
         Route::get('/student/fee/classwise/get', [StudentFeeController::class, 'studentfeeclasswiseget'])->name('student.fee.classwise.get');
         Route::post('/account/fee/store', [StudentFeeController::class, 'accountfeestore'])->name('account.fee.store');
+
+        //Employee Salary(Account)
+        Route::get('/salary/view', [AccountSalaryController::class, 'accountsalaryview'])->name('account.salary.view');
+        Route::get('/add/employee/salary', [AccountSalaryController::class, 'addemployeesalary'])->name('add.employee.salary');
+        Route::get('/employee/salary/getaccount', [AccountSalaryController::class, 'employeesalarygetaccount'])->name('employee.salary.getaccount');
+        Route::post('/employee/salary/store', [AccountEmployeeSalary::class, 'employeesalarystore'])->name('employee.salary.store');
+
+        //Other Cost
+        Route::get('/other/cost/view', [OtherCostController::class, 'othercostview'])->name('other.cost.view');
+        Route::get('/add/other/cost', [OtherCostController::class, 'addothercost'])->name('add.other.cost');
+        Route::post('/other/cost/store', [OtherCostController::class, 'othercoststore'])->name('other.cost.store');
+        Route::get('/edit/other/cost/{id}', [OtherCostController::class, 'editothercost'])->name('edit.other.cost');
+        Route::post('/update/other/cost/{id}', [OtherCostController::class, 'updateothercost'])->name('update.other.cost');
+    });
+
+    Route::prefix('reports')->group(function () {
+        //Monthly - Yearly Profit
+        Route::get('/monthly/profit/view', [ProfitController::class, 'monthlyprofitview'])->name('monthly.profit.view');
+        Route::get('/monthly/profit/get', [ProfitController::class, 'monthlyprofitget'])->name('monthly.profit.get');
+        Route::get('/report/profit/pdf', [ProfitController::class, 'reportprofitpdf'])->name('report.profit.pdf');
+
+        //Marksheet Generate
+        Route::get('/marksheet/generate/view', [MarksheetController::class, 'marksheetgenerateview'])->name('marksheet.generate.view');
+        Route::get('/report/marksheet/get', [MarksheetController::class, 'reportmarksheetget'])->name('report.marksheet.get');
     });
 });

@@ -10,12 +10,12 @@
       <div class="content-header">
           <div class="d-flex align-items-center">
               <div class="mr-auto">
-                  <h3 class="page-title">Student Fee Add Show</h3>
+                  <h3 class="page-title">Add Employee Salary Show</h3>
                   <div class="d-inline-block align-items-center">
                       <nav>
                           <ol class="breadcrumb">
                               <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="mdi mdi-home-outline"></i></a></li>
-                              <li class="breadcrumb-item" aria-current="page">Student Fee Add Table</li>
+                              <li class="breadcrumb-item" aria-current="page">Add Employee Salary Table</li>
                               <li class="breadcrumb-item active" aria-current="page">Data Tables</li>
                           </ol>
                       </nav>
@@ -32,74 +32,23 @@
          <div class="col-12">
           <div class="box bb-3 border-warning">
             <div class="box-header">
-              <h4 class="box-title">Student <strong>Fee Add</strong></h4>
+              <h4 class="box-title">Add <strong>Employee Salary</strong></h4>
             </div>
 
             <div class="box-body">
 
                 <div class="row">
-                  <div class="col-12 col-md-3">
-                     <div class="form-group">
-                      <h5>Year</h5>
-
-                      <div class="controls">
-                        <select name="year_id" id="year_id" class="form-control">
-                          <option value="">Select Your Year</option>
-
-                          @foreach($years as $year)
-                            <option value="{{ $year->id }}">{{ $year->name }}</option>
-                          @endforeach
-
-                        </select>
-                      </div>
-                     </div>
-                  </div>
-
-                  <div class="col-12 col-md-3">
-                    <div class="form-group">
-                      <h4>Class</h4>
-
-                      <div class="contrls">
-                        <select name="class_id" id="class_id" class="form-control">
-                          <option value="">Select Your Class</option>
-
-                          @foreach($classes as $class)
-                            <option value="{{ $class->id }}">{{ $class->name }}</option>
-                          @endforeach
-
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12 col-md-3">
-                    <div class="form-group">
-                      <h4>Subject</h4>
-
-                      <div class="contrls">
-                        <select name="fee_category_id" id="fee_category_id" class="form-control">
-                          <option value="">Select Your Subject</option>
-
-                          @foreach($feecategory as $fee)
-                            <option value="{{ $fee->id }}">{{ $fee->name }}</option>
-                          @endforeach
-
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-6">
                     <div class="form-group">
                         <h5>Date <span class="text-danger">*</span></h5>
                         <div class="controls">
-                            <input type="date" name="date" id="date" class="form-control" required=""> 
+                            <input type="date" name="date" id="" class="form-control" required=""> 
                             <div class="help-block"></div>
                         </div>
                     </div>
                   </div>
 
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-6">
                     <a id="search" class="btn btn-primary btn-rounded mt-4" name="search">Search</a>
                   </div>
                 </div>
@@ -124,7 +73,7 @@
 
                         <script id="document-template" type="text/x-handlebars-template" >
 
-                            <form action="{{ route('account.fee.store') }}" method="post">
+                            <form action="{{ route('employee.salary.store') }}" method="post">
                             @csrf
                             <table class="table table-bordered table-stripped" style="width:100%;">
                                 <thead>
@@ -171,15 +120,12 @@
 
 <script type="text/javascript">
     $(document).on('click','#search',function(){
-        var year_id = $('#year_id').val();
-        var class_id = $('#class_id').val();
-        var fee_category_id = $('#fee_category_id').val();
         var date = $('#date').val();
 
         $.ajax({
-            url        : "{{ route('student.fee.classwise.get') }}",
+            url        : "{{ route('employee.salary.getaccount') }}",
             method     : "GET",
-            data       : {'year_id' : year_id,'class_id' : class_id,'fee_category_id' : fee_category_id,'date': date},
+            data       : {'date': date},
             beforeSend : function(){},
             success    : function(data){
                 var source   = $('#document-template').html();
